@@ -72,7 +72,7 @@ This decision is made using **Page Replacement Algorithms** to reduce **page fau
 ## 🛠 How to Run
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/page-replacement-simulator.git
+   (https://github.com/nusuranur/Page-Replacement-Algorithms-Simulator2.0/tree/main)
 
 📦 Page-Replacement-Algorithms-Simulator
  ┣ 📜 index.html       # Main simulator page
