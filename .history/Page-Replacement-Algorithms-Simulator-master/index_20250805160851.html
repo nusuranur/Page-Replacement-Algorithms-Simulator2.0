@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS LAB SIMULATOR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="images/website_logo1.png">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #e0e0e0;
+            min-height: 100vh;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .navbar {
+            background: rgba(10, 25, 47, 0.95) !important;
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand .hover-border {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #00e6ff;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .navbar-brand .hover-border:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .navbar-brand .hover-border::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background: linear-gradient(90deg, #00e6ff, #ff4081);
+            transition: width 0.4s ease;
+        }
+
+        .navbar-brand .hover-border:hover::after {
+            width: 100%;
+        }
+
+        .nav-link .hover-border {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link .hover-border:hover {
+            color: #00e6ff;
+            transform: translateY(-2px);
+        }
+
+        .nav-link .hover-border::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background: linear-gradient(90deg, #00e6ff, #ff4081);
+            transition: width 0.4s ease;
+        }
+
+        .nav-link .hover-border:hover::after {
+            width: 100%;
+        }
+
+        .divider {
+            height: 30px;
+            width: 1px;
+            background: #e0e0e0;
+            margin: 0 1.5rem;
+            opacity: 0.4;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid #00e6ff;
+            color: #e0e0e0;
+            border-radius: 25px;
+            padding: 0.7rem 2.8rem 0.7rem 1.2rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ffffff;
+            color: #ffffff;
+            box-shadow: 0 0 8px rgba(0, 230, 255, 0.3);
+        }
+
+        .form-control::placeholder {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+
+        .bi-search {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00e6ff;
+            width: 20px;
+            height: 20px;
+        }
+
+        .dropdown-menu {
+            background: rgba(10, 25, 47, 0.98);
+            border: 1px solid #00e6ff;
+            border-radius: 12px;
+            max-height: 320px;
+            overflow-y: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: #00e6ff;
+            color: #0f2027;
+        }
+
+        .home-second-block {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .home-algo-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00e6ff;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 230, 255, 0.6);
+        }
+
+        .home-specififc-algo-info {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .home-card {
+            background: rgba(255, 255, 255, 0.97);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            overflow: hidden;
+        }
+
+        .home-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-card-header {
+            background: linear-gradient(90deg, #00e6ff, #ff4081);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.3rem;
+            padding: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .home-card-body {
+            padding: 2.5rem;
+        }
+
+        .home-card-text {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        .home-algo-button {
+            background: linear-gradient(90deg, #00e6ff, #ff4081);
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .home-algo-button:hover {
+            background: linear-gradient(90deg, #ff4081, #00e6ff);
+            color: #ffffff;
+            transform: scale(1.08);
+            box-shadow: 0 5px 15px rgba(0, 230, 255, 0.4);
+        }
+
+        .home-tick {
+            margin-right: 0.6rem;
+            width: 22px;
+            height: 22px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 0.9rem;
+            }
+
+            .home-algo-title {
+                font-size: 2.2rem;
+            }
+
+            .home-second-block {
+                padding: 3rem 1rem;
+            }
+
+            .navbar-brand .hover-border {
+                font-size: 1.3rem;
+            }
+
+            .nav-link .hover-border {
+                font-size: 1rem;
+            }
+
+            .form-control {
+                font-size: 0.9rem;
+            }
+
+            .home-card-header {
+                font-size: 1.1rem;
+            }
+
+            .home-card-text {
+                font-size: 1rem;
+            }
+
+            .home-algo-button {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <div class="hover-border">OS LAB SIMULATOR</div>
+            </a>
+            <div class="divider"></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./pagereplacement_index.html">
+                            <div class="hover-border">PAGE REPLACEMENT</div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex position-relative">
+                    <div class="dropdown">
+                        <input id="search-input" class="form-control me-2 dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false" placeholder="Search algorithms...">
+                        <ul id="suggestions" class="dropdown-menu dropdown-menu-dark" aria-labelledby="search-button">
+                        </ul>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="home-second-block">
+        <div class="home-algo-basic-info">
+            <div class="home-algo-title" data-aos="zoom-in">
+                PAGE REPLACEMENT
+            </div>
+            <div class="home-specififc-algo-info" data-aos="fade-up">
+                <div class="card text-dark bg-light mb-3 home-card">
+                    <div class="card-header home-card-header">WHAT IS PAGE REPLACEMENT?</div>
+                    <div class="card-body home-card-body">
+                        <p class="card-text home-card-text">In an operating system that uses paging for memory
+                            management, a page replacement algorithm is needed to decide which page needs to be replaced when a new page comes in.</p>
+                        <a href="pagereplacement_index.html" class="btn btn-light home-algo-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-check-circle home-tick" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 1 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                    d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                            </svg>
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+            easing: 'ease-out-quart',
+        });
+    </script>
+    <script src="js/search.js"></script>
+    <script src="js/home_typewriter.js"></script>
+</body>
+
+</html>

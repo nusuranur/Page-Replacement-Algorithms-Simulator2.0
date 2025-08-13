@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS LAB SIMULATOR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="shortcut icon" type="image/png" href="images/website_logo1.png">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #e0e0e0;
+            min-height: 100vh;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .navbar {
+            background: rgba(10, 25, 47, 0.95) !important;
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand .hover-border {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #00e6ff;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .navbar-brand .hover-border:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .navbar-brand .hover-border::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background: linear-gradient(90deg, #00e6ff, #ff4081);
+            transition: width 0.4s ease;
+        }
+
+        .navbar-brand .hover-border:hover::after {
+            width: 100%;
+        }
+
+        .nav-link, .nav-link.dropdown-toggle {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.dropdown-toggle:hover {
+            color: #00e6ff;
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after, .nav-link.dropdown-toggle::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background: linear-gradient(90deg, #00e6ff, #ff4081);
+            transition: width 0.4s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.dropdown-toggle:hover::after {
+            width: 100%;
+        }
+
+        .divider {
+            height: 30px;
+            width: 1px;
+            background: #e0e0e0;
+            margin: 0 1.5rem;
+            opacity: 0.4;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid #00e6ff;
+            color: #e0e0e0;
+            border-radius: 25px;
+            padding: 0.7rem 2.8rem 0.7rem 1.2rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ffffff;
+            color: #ffffff;
+            box-shadow: 0 0 8px rgba(0, 230, 255, 0.3);
+        }
+
+        .form-control::placeholder {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+
+        .bi-search {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00e6ff;
+            width: 20px;
+            height: 20px;
+        }
+
+        .dropdown-menu {
+            background: rgba(10, 25, 47, 0.98);
+            border: 1px solid #00e6ff;
+            border-radius: 12px;
+            max-height: 320px;
+            overflow-y: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-item {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: #00e6ff;
+            color: #0f2027;
+        }
+
+        .info-block {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .mid-heading-wrapper {
+            margin-bottom: 2rem;
+        }
+
+        .mid-heading h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #00e6ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 230, 255, 0.6);
+            position: relative;
+            display: inline-block;
+        }
+
+        .mid-heading h1::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -8px;
+            left: 25%;
+            background: linear-gradient(90deg, #00e6ff, #ff4081);
+        }
+
+        .infocard {
+            max-width: 800px;
+            margin: 1.5rem auto;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            overflow: hidden;
+        }
+
+        .infocard:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .infocard-body {
+            padding: 2rem;
+            color: #1a1a1a;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .infocard-body p {
+            margin-bottom: 1rem;
+        }
+
+        .infocard-body p[style*="font-weight: 700"] {
+            color: #0f2027;
+            font-weight: 600;
+        }
+
+        .mid-blockDSPR {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cardsDSPR {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0 auto;
+        }
+
+        .algo-cards {
+            width: 16rem;
+            height: 18rem;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            text-decoration: none;
+            overflow: hidden;
+        }
+
+        .algo-cards:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .algo-heading {
+            background: linear-gradient(90deg, #00e6ff, #ff4081);
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            padding: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .algo-cards .card-body {
+            padding: 1.5rem;
+            color: #e0e0e0;
+            font-size: 1rem;
+            line-height: 1.6;
+            overflow-y: auto;
+        }
+
+        .algo-cards.bg-success {
+            background: #2ecc71;
+        }
+
+        .algo-cards.bg-warning {
+            background: #f10f40;
+        }
+
+        .algo-cards.bg-info {
+            background: #3498db;
+        }
+
+        .algo-cards.bg-danger {
+            background: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 0.9rem;
+            }
+
+            .mid-heading h1 {
+                font-size: 2.2rem;
+            }
+
+            .info-block, .mid-blockDSPR {
+                padding: 2rem 1rem;
+            }
+
+            .navbar-brand .hover-border {
+                font-size: 1.3rem;
+            }
+
+            .nav-link, .nav-link.dropdown-toggle {
+                font-size: 1rem;
+            }
+
+            .form-control {
+                font-size: 0.9rem;
+            }
+
+            .infocard-body {
+                font-size: 1rem;
+            }
+
+            .algo-cards {
+                width: 14rem;
+                height: 16rem;
+            }
+
+            .algo-heading {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <div class="hover-border">OS LAB SIMULATOR</div>
+            </a>
+            <div class="divider"></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            ALGORITHMS
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./fifo.html">FIFO</a></li>
+                            <li><a class="dropdown-item" href="./lru.html">LRU</a></li>
+                            <li><a class="dropdown-item" href="./optimal.html">OPTIMAL</a></li>
+                            <li><a class="dropdown-item" href="./lifo.html">LIFO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex position-relative">
+                    <div class="dropdown">
+                        <input id="search-input" class="form-control me-2 dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false" placeholder="Search algorithms...">
+                        <ul id="suggestions" class="dropdown-menu dropdown-menu-dark" aria-labelledby="search-button">
+                        </ul>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="info-block" data-aos="fade-up">
+        <div class="mid-heading-wrapper">
+            <div class="mid-heading">
+                <h1>ABOUT</h1>
+            </div>
+        </div>
+        <div class="infocard" data-aos="fade-up" data-aos-delay="100">
+            <div class="infocard-body">
+                <p>In a computer operating system that uses paging for virtual memory management, page replacement
+                    algorithms decide which memory pages to page out, sometimes called swap out, or write to disk, when
+                    a page of memory needs to be allocated.</p>
+                <p>Page replacement happens when a requested page is not in memory (page fault) and a free page cannot
+                    be used to satisfy the allocation, either because there are none, or because the number of free
+                    pages is lower than some threshold.</p>
+            </div>
+        </div>
+        <div class="infocard" data-aos="fade-up" data-aos-delay="200">
+            <div class="infocard-body">
+                <p style="font-weight: 700;">Page Replacement is important because:</p>
+                <p>1. It helps the OS to decide which memory page can be moved out, making space for the currently
+                    needed page.</p>
+                <p>2. The ultimate objective of all page replacement algorithms is to reduce the number of page faults.</p>
+            </div>
+        </div>
+        <div class="infocard" data-aos="fade-up" data-aos-delay="300">
+            <div class="infocard-body">
+                <p style="font-weight: 700;">Important term for page replacement:</p>
+                <p style="font-weight: 700;">Page fault:</p>
+                <p>A page fault occurs when a program attempts to access a block of memory that is not stored in the
+                    physical memory, or RAM.</p>
+                <p>The fault notifies the operating system that it must locate the data in
+                    virtual memory, then transfer it from the storage device, such as an HDD or SSD, to the system RAM.</p>
+            </div>
+        </div>
+    </div>
+    <div class="mid-blockDSPR" data-aos="fade-up">
+        <div class="mid-heading-wrapper">
+            <div class="mid-heading">
+                <h1 class="hover-border">ALGORITHMS</h1>
+            </div>
+        </div>
+        <div class="cardsDSPR">
+            <a href="fifo.html" style="text-decoration: none;" data-aos="zoom-in" data-aos-delay="100">
+                <div class="card text-white bg-success algo-cards">
+                    <div class="algo-heading">FIFO</div>
+                    <div class="card-body">
+                        <p class="card-text">During replacement, the oldest page is replaced by the new page.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="lru.html" style="text-decoration: none;" data-aos="zoom-in" data-aos-delay="200">
+                <div class="card text-white bg-warning algo-cards">
+                    <div class="algo-heading">LRU</div>
+                    <div class="card-body">
+                        <p class="card-text">The least recently used page is replaced by the new page.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="optimal.html" style="text-decoration: none;" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card text-white bg-info algo-cards">
+                    <div class="algo-heading">OPTIMAL</div>
+                    <div class="card-body">
+                        <p class="card-text">The page which is not going to be used in the future will be replaced by the new page.</p>
+                    </div>
+                </div>
+            </a>
+            <a href="lifo.html" style="text-decoration: none;" data-aos="zoom-in" data-aos-delay="400">
+                <div class="card text-white bg-danger algo-cards">
+                    <div class="algo-heading">LIFO</div>
+                    <div class="card-body">
+                        <p class="card-text">During replacement, the most recently added page in the stack is replaced first.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+            easing: 'ease-out-quart',
+        });
+    </script>
+    <script src="js/search.js"></script>
+    <script src="js/typewriter.js"></script>
+</body>
+
+</html>

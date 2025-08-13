@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS LAB SIMULATOR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="images/website_logo1.png">
+    <style>
+        :root {
+            --bg-color: #0f2027;
+            --text-color: #e0e0e0;
+            --card-bg: rgba(255, 255, 255, 0.97);
+        }
+        body.light-mode {
+            --bg-color: #f2f2f2;
+            --text-color: #111;
+            --card-bg: #fff;
+        }
+        body {
+            background: var(--bg-color);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            min-height: 100vh;
+            margin: 0;
+            font-size: 1rem;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        .navbar {
+            background: rgba(10, 25, 47, 0.95) !important;
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand .hover-border,
+        .nav-link .hover-border {
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        .divider {
+            height: 30px;
+            width: 1px;
+            background: var(--text-color);
+            margin: 0 1.5rem;
+            opacity: 0.4;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid #00e6ff;
+            color: var(--text-color);
+            border-radius: 25px;
+        }
+
+        .dropdown-menu {
+            background: rgba(10, 25, 47, 0.98);
+            border: 1px solid #00e6ff;
+            border-radius: 12px;
+        }
+
+        .home-second-block {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .home-algo-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00e6ff;
+        }
+
+        .home-card {
+            background: var(--card-bg);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-card-header {
+            background: linear-gradient(90deg, #00e6ff, #ff4081);
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.3rem;
+            padding: 1.2rem;
+        }
+
+        .home-card-body {
+            padding: 2.5rem;
+        }
+
+        .home-card-text {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+        }
+
+        footer {
+            background: #0a192f;
+            color: #ccc;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #00e6ff;
+            color: #000;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 230, 255, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <div class="hover-border">OS LAB SIMULATOR</div>
+            </a>
+            <div class="divider"></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="pagereplacement_index.html">
+                            <div class="hover-border">PAGE REPLACEMENT</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="home-second-block">
+        <div class="home-algo-title" data-aos="zoom-in">PAGE REPLACEMENT</div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="card home-card">
+                    <div class="card-header home-card-header">WHAT IS PAGE REPLACEMENT?</div>
+                    <div class="card-body home-card-body">
+                        <p class="home-card-text">Page Replacement helps OS decide which memory page to replace when a new page needs to be loaded into RAM.</p>
+                        <a href="pagereplacement_index.html" class="btn btn-light home-algo-button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="card home-card">
+                    <div class="card-header home-card-header">FIFO</div>
+                    <div class="card-body home-card-body">
+                        <p class="home-card-text">First-In-First-Out replaces the oldest loaded page in memory.</p>
+                        <a href="fifo.html" class="btn btn-light home-algo-button">Try FIFO</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="card home-card">
+                    <div class="card-header home-card-header">LRU</div>
+                    <div class="card-body home-card-body">
+                        <p class="home-card-text">Least Recently Used replaces the page not used for the longest time.</p>
+                        <a href="lru.html" class="btn btn-light home-algo-button">Try LRU</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="card home-card">
+                    <div class="card-header home-card-header">OPTIMAL</div>
+                    <div class="card-body home-card-body">
+                        <p class="home-card-text">Replaces the page that will not be used for the longest time in the future.</p>
+                        <a href="optimal.html" class="btn btn-light home-algo-button">Try Optimal</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="card home-card">
+                    <div class="card-header home-card-header">LIFO</div>
+                    <div class="card-body home-card-body">
+                        <p class="home-card-text">Last-In-First-Out removes the most recently loaded page.</p>
+                        <a href="lifo.html" class="btn btn-light home-algo-button">Try LIFO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <div class="text-muted">Last updated: August 5, 2025</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 OS Lab Simulator. Built by Nowrin 💻</p>
+    </footer>
+
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, easing: 'ease-out-quart' });
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+    </script>
+    <script src="js/search.js"></script>
+    <script src="js/home_typewriter.js"></script>
+</body>
+
+</html>
